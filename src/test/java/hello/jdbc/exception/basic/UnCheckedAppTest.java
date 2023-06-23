@@ -31,7 +31,7 @@ public class UnCheckedAppTest {
     static class Controller {
         Service service = new Service();
 
-        public void request() throws SQLException, ConnectException {
+        public void request() {
             service.logic();
         }
     }
@@ -40,15 +40,15 @@ public class UnCheckedAppTest {
         Repository repository = new Repository();
         NetworkClient networkClient = new NetworkClient();
 
-        public void logic() throws SQLException, ConnectException {
+        public void logic() {
             repository.call();
             networkClient.call();
         }
     }
 
     static class NetworkClient {
-        public void call() throws ConnectException {
-            throw new ConnectException("연결 실패");
+        public void call() {
+            throw new RuntimeConnectException("연결 실패");
         }
     }
 
@@ -73,8 +73,6 @@ public class UnCheckedAppTest {
     }
 
     static class RuntimeSQLException extends RuntimeException {
-        public RuntimeSQLException() {
-        }
 
         public RuntimeSQLException(Throwable cause) {
             super(cause);
