@@ -73,7 +73,6 @@ public class UnCheckedAppTest {
     }
 
     static class RuntimeSQLException extends RuntimeException {
-
         public RuntimeSQLException(Throwable cause) {
             super(cause);
         }
